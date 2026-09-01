@@ -23,7 +23,7 @@ do
             echo "Extracting toolchain\n"
             mkdir -p toolchain
             tar -xvf clang-r563880c.tar.gz -C toolchain
-            rm clang-563880c.tar.gz
+            rm clang-r563880c.tar.gz
             printf "\n\nAdd toolchain binary to PATH\n\n"
             cd toolchain/bin || exit 1
             export PATH=$(pwd):$PATH
