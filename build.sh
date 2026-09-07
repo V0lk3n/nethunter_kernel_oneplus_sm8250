@@ -28,41 +28,41 @@ do
             cd toolchain/bin || exit 1
             export PATH=$(pwd):$PATH
             cd ../../
-	    mkdir -p out
+            mkdir -p out
             ;;
         2)
             printf "\n\nMerging defconfig\n\n"
             cd toolchain/bin || exit 1
-	    export PATH=$(pwd):$PATH
-	    cd ../../
+            export PATH=$(pwd):$PATH
+            cd ../../
             KCONFIG_CONFIG=out/.config scripts/kconfig/merge_config.sh -m -r arch/arm64/configs/vendor/kona-perf_defconfig arch/arm64/configs/vendor/oplus.config
             ;;
         3)
             printf "\n\nMake nconfig...\n\n"
             cd toolchain/bin || exit 1
-	    export PATH=$(pwd):$PATH
-	    cd ../../
+            export PATH=$(pwd):$PATH
+            cd ../../
             make -j $(nproc --all) ARCH=arm64 O=out CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_32=arm-linux-gnueabi- LLVM=1 LLVM_IAS=1 AS=llvm-as DTC_EXT=$(pwd)/dtc nconfig
             ;;
         4)
             printf "\n\nMake Image.gz...\n\n"
             cd toolchain/bin || exit 1
-	    export PATH=$(pwd):$PATH
-	    cd ../../
+            export PATH=$(pwd):$PATH
+            cd ../../
             make -j $(nproc --all) ARCH=arm64 O=out CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_32=arm-linux-gnueabi- LLVM=1 LLVM_IAS=1 AS=llvm-as DTC_EXT=$(pwd)/dtc Image.gz
             ;;
         5)
             printf "\n\nMake Modules...\n\n"
             cd toolchain/bin || exit 1
-	    export PATH=$(pwd):$PATH
-	    cd ../../
+            export PATH=$(pwd):$PATH
+            cd ../../
             make -j $(nproc --all) ARCH=arm64 O=out CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_32=arm-linux-gnueabi- LLVM=1 LLVM_IAS=1 AS=llvm-as DTC_EXT=$(pwd)/dtc modules
             ;;
         6)
             printf "\n\nMake all...\n\n"
             cd toolchain/bin || exit 1
-	    export PATH=$(pwd):$PATH
-	    cd ../../
+            export PATH=$(pwd):$PATH
+            cd ../../
             make -j $(nproc --all) ARCH=arm64 O=out CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_32=arm-linux-gnueabi- LLVM=1 LLVM_IAS=1 AS=llvm-as DTC_EXT=$(pwd)/dtc all
             ;;
         7)
